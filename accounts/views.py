@@ -1,3 +1,27 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic
 
-# Create your views here.
+from .models import User
+
+
+class UserListView(generic.ListView):
+    model = User
+
+
+class UserDetailView(generic.DetailView):
+    model = User
+
+
+class UserCreateView(generic.CreateView):
+    model = User
+    fields = ['email']
+
+
+class UserUpdateView(generic.UpdateView):
+    model = User
+    fields = ['email']
+
+
+class UserDeleteView(generic.DeleteView):
+    model = User
+    success_url = reverse_lazy('user-list')
