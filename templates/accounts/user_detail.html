@@ -1,48 +1,44 @@
 {% extends "base_site.html" %}
 
 {% block content %}
-<div class="container">
-	<div class="row">
-        <div class="span12">
-    		<table class="table table-condensed table-hover">
-    			<thead>
-    				<tr>
-    					<th> </th>
-    					<th>Value</th>
-    				</tr>
-    			</thead>
-    			<tbody>
-    				<tr>
-    					<td>Username</td>
-    					<td>{{ object.username }}</td>
-    				</tr>
-    				<tr>
-    					<td>Email address</td>
-    					<td>{{ object.email }}</td>
-    				</tr>
-    				<tr>
-    					<td>First name</td>
-    					<td>{{ object.first_name }}</td>
-    				</tr>
-    				<tr>
-    					<td>Last name</td>
-    					<td>{{ object.last_name }}</td>
-    				</tr>
-    				<tr>
-    					<td>Birthday</td>
-    					<td>{{ object.birthday }}</td>
-    				</tr>
-    				<tr>
-    					<td> </td>
-    					<td>
-                            <a class="btn btn-success" href="{% url 'user-change' user.id %}">
-                                <i class="icon-shopping-cart icon-white"></i> Edit »
-                            </a>
-                        </td>
-    				</tr>
-    			</tbody>
-    		</table>
-    	</div>
-	</div>
+<div class="span12">
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Username</td>
+            <td>{{ object.username }}</td>
+        </tr>
+        <tr>
+            <td>Email address</td>
+            <td>{{ object.email }}</td>
+        </tr>
+        <tr>
+            <td>First name</td>
+            <td>{{ object.first_name }}</td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td>{{ object.last_name }}</td>
+        </tr>
+        <tr>
+            <td>Birthday</td>
+            <td>{{ object.birthday }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <a class="btn btn-success" href="{% url 'user-change' user.id %}">
+                    <i class="icon-shopping-cart icon-white"></i> Edit »
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 {% endblock %}
