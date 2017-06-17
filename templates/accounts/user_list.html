@@ -1,9 +1,11 @@
 {% extends "base_site.html" %}
+{% load static %}
 
 {% block extrastyle %}
 {{ block.super }}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
       type='text/css'>
+<link href="{% static 'css/panel-table.css' %}" rel='stylesheet' type='text/css'>
 {% endblock %}
 
 
