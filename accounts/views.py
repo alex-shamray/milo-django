@@ -1,6 +1,9 @@
+import csv
+
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import StreamingHttpResponse
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 
 from .models import User
 
@@ -30,3 +33,43 @@ class UserDeleteView(PermissionRequiredMixin, generic.DeleteView):
     permission_required = 'users.can_delete'
     model = User
     success_url = reverse_lazy('user-list')
+
+
+class Echo(object):
+    """
+    An object that implements just the write method of the file-like
+    interface.
+    """
+
+    def write(self, value):
+        """
+        Write the value by returning it, instead of storing in a buffer.
+        """
+        return value
+
+
+class UserExportView(View):
+    """
+    A view that streams a large CSV file.
+    """
+
+    def get(self, request, *args, **kwargs):
+        # Generate a sequence of rows. The range is based on the maximum number of
+        # rows that can be handled by a single sheet in most spreadsheet
+        # applications.
+        def streaming_csv():
+            pseudo_buffer = Echo()
+            writer = csv.writer(pseudo_buffer)
+
+            users = User.objects.all()
+            for user in users:
+                rows = (["Row {}".format(idx), str(idx)] for idx in range(65536))
+                yield writer.writerow([
+                    user.username,
+                    user.birthday,
+                    user.random_num,
+                ])
+
+        response = StreamingHttpResponse(streaming_csv(), content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="users.csv"'
+        return response
