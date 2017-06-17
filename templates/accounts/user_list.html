@@ -58,19 +58,16 @@
                         {% endfor %}
                         </tbody>
                     </table>
-
                 </div>
+                {% if is_paginated %}
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="col col-xs-4">Page 1 of 5
-                        </div>
+                        <div class="col col-xs-4">Page {{ page_obj.number }} of {{ paginator.num_pages }}</div>
                         <div class="col col-xs-8">
                             <ul class="pagination hidden-xs pull-right">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
+                                {% for page in paginator.page_range %}
+                                <li><a href="?page={{ page }}">{{ page }}</a></li>
+                                {% endfor %}
                             </ul>
                             <ul class="pagination visible-xs pull-right">
                                 <li><a href="#">«</a></li>
@@ -79,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
