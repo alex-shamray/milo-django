@@ -54,12 +54,10 @@ class UserExportView(View):
     """
 
     def get(self, request, *args, **kwargs):
-        # Generate a sequence of rows. The range is based on the maximum number of
-        # rows that can be handled by a single sheet in most spreadsheet
-        # applications.
         def streaming_csv():
             pseudo_buffer = Echo()
             writer = csv.writer(pseudo_buffer)
+            yield writer.writerow(['Username', 'Birthday', 'Eligible', 'Random Number', 'BizzFuzz'])
 
             users = User.objects.all()
             for user in users:
@@ -67,7 +65,9 @@ class UserExportView(View):
                 yield writer.writerow([
                     user.username,
                     user.birthday,
+                    '',
                     user.random_num,
+                    '',
                 ])
 
         response = StreamingHttpResponse(streaming_csv(), content_type='text/csv')
