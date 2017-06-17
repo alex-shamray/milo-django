@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/$', views.UserDetailView.as_view(), name='user-detail'),
     url(r'^(?P<pk>[0-9]+)/delete/$', views.UserDeleteView.as_view(), name='user-delete'),
     url(r'^(?P<pk>[0-9]+)/change/$', views.UserUpdateView.as_view(), name='user-change'),
+    url(r'^export/$', views.UserExportView.as_view(), name='user-export'),
 ]
