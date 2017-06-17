@@ -16,6 +16,5 @@ class User(AbstractUser):
 
     Username, password and email are required. Other fields are optional.
     """
-
     birthday = models.DateField(_('birthday'), blank=True, null=True)
     random_num = models.IntegerField(_('random number'), default=randint)
