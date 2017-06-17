@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -19,11 +20,13 @@ class UserCreateView(generic.CreateView):
     fields = ['email']
 
 
-class UserUpdateView(generic.UpdateView):
+class UserUpdateView(PermissionRequiredMixin, generic.UpdateView):
+    permission_required = 'users.can_change'
     model = User
     fields = ['email']
 
 
-class UserDeleteView(generic.DeleteView):
+class UserDeleteView(PermissionRequiredMixin, generic.DeleteView):
+    permission_required = 'users.can_delete'
     model = User
     success_url = reverse_lazy('user-list')
