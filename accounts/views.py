@@ -7,6 +7,7 @@ from .models import User
 class UserListView(generic.ListView):
     model = User
     queryset = User.objects.filter(is_staff=False, is_superuser=False)
+    paginate_by = 10
 
 
 class UserDetailView(generic.DetailView):
