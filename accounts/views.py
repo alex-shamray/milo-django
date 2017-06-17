@@ -23,7 +23,7 @@ class UserCreateView(generic.CreateView):
 class UserUpdateView(PermissionRequiredMixin, generic.UpdateView):
     permission_required = 'users.can_change'
     model = User
-    fields = ['email']
+    fields = ['username', 'email', 'first_name', 'last_name', 'birthday']
 
 
 class UserDeleteView(PermissionRequiredMixin, generic.DeleteView):
