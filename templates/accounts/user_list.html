@@ -49,7 +49,7 @@
                                 <a class="btn btn-danger" href="{% url 'user-delete' user.id %}"><em class="fa fa-trash"></em></a>
                             </td>
                             <td class="hidden-xs">{{ user.id }}</td>
-                            <td>{{ user.username }}</td>
+                            <td><a href="{% url 'user-detail' user.id %}">{{ user.username }}</a></td>
                             <td>{{ user.first_name }} {{ user.last_name }}</td>
                             <td>{{ user.email }}</td>
                         </tr>
