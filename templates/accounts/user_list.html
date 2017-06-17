@@ -43,8 +43,8 @@
                         {% for user in object_list %}
                         <tr>
                             <td align="center">
-                                <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                <a class="btn btn-default" href="{% url 'user-change' user.id %}"><em class="fa fa-pencil"></em></a>
+                                <a class="btn btn-danger" href="{% url 'user-delete' user.id %}"><em class="fa fa-trash"></em></a>
                             </td>
                             <td class="hidden-xs">{{ user.id }}</td>
                             <td>{{ user.username }}</td>
