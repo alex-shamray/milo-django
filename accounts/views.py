@@ -70,9 +70,9 @@ class UserExportView(View):
                 yield writer.writerow([
                     user.username,
                     user.birthday,
-                    '',
+                    user.get_eligibility_status(),
                     user.random_num,
-                    '',
+                    user.get_bizzfuzz_status(),
                 ])
 
         response = StreamingHttpResponse(streaming_csv(), content_type='text/csv')
