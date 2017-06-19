@@ -27,7 +27,11 @@
                 <li><a href="{% url 'user-list' %}">Accounts</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">Sign in</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Sign out</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Sign in</a></li>
+                {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
     </div>
