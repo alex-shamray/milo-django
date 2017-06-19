@@ -1,6 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ title }} | {{ site_title|default:_('Django site') }}{% endblock %}
+
+{% block extrastyle %}
+<!-- Custom styles for this template -->
+<link href="{% static 'css/theme.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block container %}
 <nav class="navbar navbar-inverse navbar-fixed-top">
