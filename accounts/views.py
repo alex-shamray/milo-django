@@ -25,12 +25,14 @@ class UserCreateView(generic.CreateView):
 
 class UserUpdateView(PermissionRequiredMixin, generic.UpdateView):
     permission_required = 'users.can_change'
+    raise_exception = True
     model = User
     fields = ['username', 'email', 'first_name', 'last_name', 'birthday']
 
 
 class UserDeleteView(PermissionRequiredMixin, generic.DeleteView):
     permission_required = 'users.can_delete'
+    raise_exception = True
     model = User
     success_url = reverse_lazy('user-list')
 
