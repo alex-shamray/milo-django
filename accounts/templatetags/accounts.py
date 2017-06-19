@@ -13,8 +13,8 @@ class EligibleNode(template.Node):
     def render(self, context):
         user = self.user.resolve(context)
         if self.varname is None:
-            return user.is_eligible()
-        context[self.varname] = user.is_eligible()
+            return user.get_eligibility_status()
+        context[self.varname] = user.get_eligibility_status()
         return ''
 
     @classmethod
@@ -47,8 +47,8 @@ class BizzFuzzNode(template.Node):
     def render(self, context):
         user = self.user.resolve(context)
         if self.varname is None:
-            return user.bizzfuzz()
-        context[self.varname] = user.is_eligible()
+            return user.get_bizzfuzz_status()
+        context[self.varname] = user.get_bizzfuzz_status()
         return ''
 
     @classmethod
