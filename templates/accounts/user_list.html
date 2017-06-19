@@ -1,0 +1,83 @@
+{% extends "base_site.html" %}
+{% load static accounts %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+      type='text/css'>
+<link href="{% static 'css/panel-table.css' %}" rel='stylesheet' type='text/css'>
+{% endblock %}
+
+
+{% block content %}
+<div class="panel panel-default panel-table">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col col-xs-6">
+                <h3 class="panel-title">Users</h3>
+            </div>
+            <div class="col col-xs-6 text-right">
+                <a href="{% url 'user-export' %}" class="btn btn-sm btn-primary btn-create">Export</a>
+                <a href="{% url 'user-add' %}" class="btn btn-sm btn-primary btn-create">Create New</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered table-list">
+            <thead>
+            <tr>
+                <th><em class="fa fa-cog"></em></th>
+                <th class="hidden-xs">ID</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Birthday</th>
+                <th>Eligible</th>
+                <th>Random Number</th>
+                <th>BizzFuzz</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in object_list %}
+            <tr>
+                <td align="center">
+                    <a class="btn btn-default" href="{% url 'user-change' user.id %}"><em class="fa fa-pencil"></em></a>
+                    <a class="btn btn-danger" href="{% url 'user-delete' user.id %}"><em class="fa fa-trash"></em></a>
+                </td>
+                <td class="hidden-xs">{{ user.id }}</td>
+                <td><a href="{% url 'user-detail' user.id %}">{{ user.username }}</a></td>
+                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.birthday }}</td>
+                <td>{% eligible user %}</td>
+                <td>{{ user.random_num }}</td>
+                <td>{% bizzfuzz user %}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No users yet.</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if is_paginated %}
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col col-xs-4">Page {{ page_obj.number }} of {{ paginator.num_pages }}</div>
+            <div class="col col-xs-8">
+                <ul class="pagination hidden-xs pull-right">
+                    {% for page in paginator.page_range %}
+                    <li><a href="?page={{ page }}">{{ page }}</a></li>
+                    {% endfor %}
+                </ul>
+                <ul class="pagination visible-xs pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
