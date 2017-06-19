@@ -5,6 +5,7 @@ from django.http import StreamingHttpResponse
 from django.urls import reverse_lazy
 from django.views import generic, View
 
+from .forms import CustomUserCreationForm
 from .models import User
 
 
@@ -19,8 +20,9 @@ class UserDetailView(generic.DetailView):
 
 
 class UserCreateView(LoginRequiredMixin, generic.CreateView):
-    model = User
-    fields = ['email']
+    form_class = CustomUserCreationForm
+    template_name = 'accounts/user_form.html'
+    success_url = reverse_lazy('user-list')
 
 
 class UserUpdateView(PermissionRequiredMixin, generic.UpdateView):
