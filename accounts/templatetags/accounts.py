@@ -74,7 +74,7 @@ class BizzFuzzNode(template.Node):
 @register.tag
 def eligible(parser, token):
     """
-    Displays "allowed" if the user is older than 13 years otherwise display
+    Displays "allowed" if the user is older than 13 years otherwise displays
     "blocked".
 
     Usage::
