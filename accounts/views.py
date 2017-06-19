@@ -1,6 +1,6 @@
 import csv
 
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import StreamingHttpResponse
 from django.urls import reverse_lazy
 from django.views import generic, View
@@ -18,7 +18,7 @@ class UserDetailView(generic.DetailView):
     model = User
 
 
-class UserCreateView(generic.CreateView):
+class UserCreateView(LoginRequiredMixin, generic.CreateView):
     model = User
     fields = ['email']
 
