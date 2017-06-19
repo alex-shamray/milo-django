@@ -12,7 +12,7 @@
                 {{ field|addcss:'form-control' }}
                 {% if field.help_text %}
                 <p class="help-inline">
-                    <small>{{ field.help_text }}</small>
+                    <small>{{ field.help_text|safe }}</small>
                 </p>
                 {% endif %}
                 {% if field.errors %}
