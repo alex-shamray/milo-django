@@ -93,9 +93,10 @@ def eligible(parser, token):
 def bizzfuzz(parser, token):
     """
     Displays the BizzFuzz result of the random number that was generated for the user.
-    The BizzFuzz specification is that for multiples of three print "Bizz" instead of
-    the number and for the multiples of five print "Fuzz". For numbers which are
-    multiples of both three and five print "BizzFuzz".
+
+    The BizzFuzz specification is that for multiples of 3 it returns "Bizz" instead of
+    the number and for the multiples of 5 it returns "Fuzz". For numbers which are
+    multiples of both 3 and 5 it returns "BizzFuzz".
 
     Usage::
 
