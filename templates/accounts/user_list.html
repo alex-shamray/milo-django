@@ -1,5 +1,5 @@
 {% extends "base_site.html" %}
-{% load static %}
+{% load static accounts %}
 
 {% block extrastyle %}
 {{ block.super }}
@@ -31,6 +31,10 @@
                 <th>Username</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Birthday</th>
+                <th>Eligible</th>
+                <th>Random Number</th>
+                <th>BizzFuzz</th>
             </tr>
             </thead>
             <tbody>
@@ -44,6 +48,10 @@
                 <td><a href="{% url 'user-detail' user.id %}">{{ user.username }}</a></td>
                 <td>{{ user.first_name }} {{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.birthday }}</td>
+                <td>{% eligible user %}</td>
+                <td>{{ user.random_num }}</td>
+                <td>{% bizzfuzz user %}</td>
             </tr>
             {% empty %}
             <tr>
